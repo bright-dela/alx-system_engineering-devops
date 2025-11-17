@@ -1,2 +1,11 @@
 #!/bin/bash
-tr ':' '\n' <<< "$PATH" | wc -l
+path="$PATH"
+count=1
+
+for (( i=0; i<${#path}; i++ )); do
+    if [ "${path:$i:1}" = ":" ]; then
+        count=$((count + 1))
+    fi
+done
+
+echo "$count"
